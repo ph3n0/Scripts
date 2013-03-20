@@ -33,6 +33,8 @@ while true; do
     esac
 done
 
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+
 ## Install needed Ubuntu packages with apt-get
 
 apt-get -y install $NEEDED_PKGS
@@ -86,7 +88,11 @@ useradd cuckoo
 groupadd vboxusers
 usermod -a -G vboxusers cuckoo   
 cd /opt
-sudo git clone git://github.com/cuckoobox/cuckoo.git
+git clone git://github.com/cuckoobox/cuckoo.git
+
+
+cd $DIR
+
 
 echo " "
 echo "Well hopefully you don't have errors all over your screen."
@@ -114,7 +120,7 @@ done
 while true; do
     read -p "Do you wish to clean up downloaded files?" yn
     case $yn in
-        [Yy]* ) rm virtualbox-4.2_4.2.10-84104~Ubuntu~precise_amd64.deb; rm Oracle_VM_VirtualBox_Extension_Pack-4.2.10.vbox-extpack; rm /var/www/phpvirtualbox-4.2-4.zip; rm /usr/src/yara-1.6.tar.gz; rm /usr/src/yara-python-1.6.tar.gz; break;;
+        [Yy]* ) rm $DIR/virtualbox-4.2_4.2.10-84104~Ubuntu~precise_amd64.deb; rm $DIR/Oracle_VM_VirtualBox_Extension_Pack-4.2.10.vbox-extpack; rm /var/www/phpvirtualbox-4.2-4.zip; rm /usr/src/yara-1.6.tar.gz; rm /usr/src/yara-python-1.6.tar.gz; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
