@@ -15,6 +15,28 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+echo " "
+echo "This is going to install all the packages required to take a Security Onion install"
+echo "and setup Cuckoo Sandbox. The required packages will install first, then VirtualBox"
+echo "will be downloaded and installed. (The current version in the repo has an issue building"
+echo "the required driver with the current kernel, so grabbing it from virtualbox.org"
+echo "There will be a few more packages downloaded directly and installed. There is an option"
+echo "at the end to delete all the downloaded files.
+echo " "
+
+while true; do
+    read -p "Are you ready to get started?" yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+## Install needed Ubuntu packages with apt-get
+
+apt-get -y install $NEEDED_PKGS
+
 ## Download and install VirtualBox and Extension Pack
 
 echo "Grabbing VirtualBox 4.2.10 and the Extension Pack \ "
@@ -29,9 +51,7 @@ cd /var/www/
 wget https://phpvirtualbox.googlecode.com/files/phpvirtualbox-4.2-4.zip;
 unzip phpvirtualbox-4.2-4.zip
 mv /var/www/phpvirtualbox-4.2-4 /var/www/phpvirtualbox  
-#chown -R CHANGME:CHANGME /var/www/phpvirtualbox/  
 cp /var/www/phpvirtualbox/config.php-example /var/www/phpvirtualbox/config.php 
-## Setup credentials in config  ^^^^^^^^^^^^
 
 ## SSDEEP Python set
 cd /opt
