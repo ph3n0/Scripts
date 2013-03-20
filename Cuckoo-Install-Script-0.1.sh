@@ -17,7 +17,7 @@ fi
 
 ## Download and install VirtualBox and Extension Pack
 
-echo "Grabbing VirtualBox 4.2.10\ "
+echo "Grabbing VirtualBox 4.2.10 and the Extension Pack \ "
 
 wget http://download.virtualbox.org/virtualbox/4.2.10/virtualbox-4.2_4.2.10-84104~Ubuntu~precise_amd64.deb
 
@@ -71,7 +71,8 @@ usermod -a -G vboxusers cuckoo
 cd /opt
 sudo git clone git://github.com/cuckoobox/cuckoo.git
 
-echo "Well hopefully you don't have 1000 errors on your screen."
+echo " "
+echo "Well hopefully you don't have errors all over your screen."
 echo "If everything looked good then you should have Cuckoo sitting"
 echo "in /opt/cuckoo."
 echo " "
@@ -79,16 +80,17 @@ echo "Don't forget to go back and edit /var/www/phpvirtualbox/config.php"
 echo "to add in your login user information for configuring and running"
 echo "VMs from the web interface."
 echo " "
+
+sleep 3
+
 while true; do
     read -p "Do you wish to edit that config file now?" yn
     case $yn in
         [Yy]* ) nano /var/www/phpvirtualbox/config.php; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
-
-sleep 3
 
 ##Clean Up
 
@@ -96,7 +98,7 @@ while true; do
     read -p "Do you wish to clean up downloaded files?" yn
     case $yn in
         [Yy]* ) rm virtualbox-4.2_4.2.10-84104~Ubuntu~precise_amd64.deb; rm Oracle_VM_VirtualBox_Extension_Pack-4.2.10.vbox-extpack; rm /var/www/phpvirtualbox-4.2-4.zip; rm /usr/src/yara-1.6.tar.gz; rm /usr/src/yara-python-1.6.tar.gz; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
