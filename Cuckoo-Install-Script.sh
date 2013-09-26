@@ -21,7 +21,8 @@ echo "and setup Cuckoo Sandbox. The required packages will install first, then V
 echo "will be downloaded and installed. (The current version in the repo has an issue building"
 echo "the required driver with the current kernel, so grabbing it from virtualbox.org"
 echo "There will be a few more packages downloaded directly and installed. There is an option"
-echo "at the end to delete all the downloaded files.
+echo "at the end to delete all the downloaded files."
+## Thanks BridgetMontob11, turns out I suck at proofreading! 
 echo " "
 
 while true; do
