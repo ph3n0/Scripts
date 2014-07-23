@@ -12,7 +12,7 @@
 ## at github.com/ph3n0 
 ######
 
-NEEDED_PKGS="git gawk libgeoip-dev sendmail ruby cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev python-software-properties"
+NEEDED_PKGS="git gawk libgeoip-dev sendmail ruby cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev libcurl4-openssl-dev python-software-properties"
 
 ## Sorry we need to be root, prey I don't mistype something!
 
@@ -81,16 +81,16 @@ awk '/deb-src/ && /elastic/' /etc/apt/sources.list > test
 ##
 ###################################################################################################
 apt-get update;
-apt-get install -y elasticsearch
-update-rc.d elasticsearch defaults 95 10
-/etc/init.d/elasticsearch start
+#apt-get install -y elasticsearch
+#update-rc.d elasticsearch defaults 95 10
+#/etc/init.d/elasticsearch start
 
 ##	Here is logstash
 
-wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb;
-wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb;
-dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb;
-dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb;
+#wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb;
+#wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash-contrib_1.4.2-1-efd53ef_all.deb;
+#dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb;
+#dpkg -i logstash-contrib_1.4.2-1-efd53ef_all.deb;
 
 ##	Here is kibana
 
@@ -101,5 +101,9 @@ tar xvfz kibana-3.1.0.tar.gz;
 ## Lets get started with Bro!
 
 git clone --recursive git://git.bro.org/bro;
-cd bro
-./configure
+cd bro;
+./configure --prefix=/opt/bro;
+make;
+make install;
+
+
