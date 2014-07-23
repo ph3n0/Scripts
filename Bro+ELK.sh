@@ -81,9 +81,9 @@ awk '/deb-src/ && /elastic/' /etc/apt/sources.list > test
 ##
 ###################################################################################################
 apt-get update;
-#apt-get install -y elasticsearch
-#update-rc.d elasticsearch defaults 95 10
-#/etc/init.d/elasticsearch start
+apt-get install -y elasticsearch
+update-rc.d elasticsearch defaults 95 10
+/etc/init.d/elasticsearch start
 
 ##	Here is logstash
 
@@ -100,10 +100,16 @@ tar xvfz kibana-3.1.0.tar.gz;
 
 ## Lets get started with Bro!
 
+cd /usr/src;
 git clone --recursive git://git.bro.org/bro;
 cd bro;
 ./configure --prefix=/opt/bro;
 make;
 make install;
+
+###################
+## Add configuring port
+## Add turning on elasticsearch in /opt/bro/share/bro/policy/tuning/logs-to-elasticsearch.bro
+## Stop,install,start in broctl
 
 
