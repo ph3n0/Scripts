@@ -112,4 +112,14 @@ make install;
 ## Add turning on elasticsearch in /opt/bro/share/bro/policy/tuning/logs-to-elasticsearch.bro
 ## Stop,install,start in broctl
 
+echo " "
+echo " Now it is time to configure the monitoring interface."
+echo " "
+echo " What interface is your SPAN/TAP connected to?"
+echo " "
+echo " "
+
+read -e -p "Monitoring Interface (such as eth0): " monitor_interface
+
+
 
