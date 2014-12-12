@@ -97,7 +97,14 @@ read -e -p "Monitoring Interface (such as eth0): " MONITOR_INTERFACE
 
 BRO_CONFIG="/opt/bro/etc/node.cfg"
 
-python -c "import sys; inputfile = '$BRO_CONFIG'; interface = '$MONITOR_INTERFACE'; data = open(inputfile).read(); data.replace ('interface=eth0\n', 'interface=%s\n'%interface); open(inputfile, 'w').write(data)"
+python -c "import sys; inputfile = '$BRO_CONFIG'; interface = '$MONITOR_INTERFACE'; data = open(inputfile).read(); data.replace ('interface=eth0\n', 'interface=%s\n'%interface); open(inputfile, 'w').write(data)";
+
+/opt/bro/bin/broctl install;
+
+/opt/bro/bin/broctl restart; 
+
+
+
 
 
 
